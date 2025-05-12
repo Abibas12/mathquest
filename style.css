@@ -81,8 +81,17 @@ main {
   transform: scale(1.05);
 }
 
-.end{
- width: 32px;
+.end{  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 0.7s ease-in-out;
+ }
+
+.end p{
+  width: 32px;
   height: 32px;
   background-color: rgb(222, 224, 224);
   border: 1px solid grey;
@@ -92,8 +101,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;}
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
-.end :hover {
+.end p:hover {
     background-color:rgb(183, 189, 189);
     transform: scale(1.5);}
