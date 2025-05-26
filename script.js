@@ -1,87 +1,71 @@
-  let questions = [
+   let questionsList = [
       "What is the capital of France?", "2 + 2 = ?", "What color is the sky during the day?",
       "What is the third letter of the alphabet?", "How many legs does a spider have?",
-      "What city have Statue of Liberty?", "How long is 10/2?", "What planet is closest to the Sun?",
-      "What animal says 'meow'?", "What day of the week is it today?", "What creates when you suddenly cool down lava?",
-      "In which country do gunpowder was invented?", "Who is the richest man on the Earth?",
+      "What city has the Statue of Liberty?", "How long is 10/2?", "What planet is closest to the Sun?",
+      "What animal says 'meow'?", "What day of the week is it today?", "What is created when you suddenly cool down lava?",
+      "In which country was gunpowder invented?", "Who is the richest man on Earth?",
       "Who is the best golfer?", "Which Minecraft mob is the WORST?",
       "Which Fortnite Marvel skin is the best?", "What is the capital of Japan?",
       "Who directed the movie 'Titanic'?", "What color do you get when you mix red and blue?",
       "Which planet is known as the Red Planet?", "What is 7 multiplied by 6?"
     ];
 
-    let answers = [
+    let answersList = [
       "Paris", "4", "blue", "C", "8", "New York", "5", "Mercury", "cat", "monday",
       "obsidian", "China", "Elon", "Scheffler", "phantom", "Deadpool", "Tokyo", "James Cameron",
       "Purple", "Mars", "42"
     ];
 
-    let currentQuestionIndex = 0;
-    let correctAnswers = 0;
-    let answerInput = null;
+    let questionStep = 0;
+    let score = 0;
+    let answerField;
 
-    let keyboard = document.querySelector(".keyboard");
-    let keys = [];
+    let keyboardBlock = document.querySelector(".keyboard");
+    let keyButtons = keyboardBlock.querySelectorAll("p");
 
-    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < chars.length; i++) {
-      let key = document.createElement("p");
-      key.className = "alphabet";
-      key.textContent = chars[i];
-      keyboard.appendChild(key);
-      keys.push(key);
-    }
-
-    let backspace = document.createElement("p");
-    backspace.className = "alphabet";
-    backspace.textContent = "Backspace";
-    keyboard.appendChild(backspace);
-    keys.push(backspace);
-
-    document.querySelector(".start").addEventListener("click", () => {
-      correctAnswers = 0;
-      currentQuestionIndex = 0;
+    document.querySelector(".start").addEventListener("click", function() {
+      score = 0;
+      questionStep = 0;
       document.querySelector(".result").textContent = "";
-      showQuestion();
+      loadQuestion();
     });
 
-    function showQuestion() {
+    function loadQuestion() {
       let questionBox = document.querySelector(".Quest");
-      if (currentQuestionIndex >= questions.length || questions[currentQuestionIndex] === "") {
+      if (questionStep >= questionsList.length || questionsList[questionStep] === "") {
         questionBox.textContent = "Quiz completed!";
-        document.getElementById("answerContainer").innerHTML = "";
-        document.querySelector(".result").textContent = "Correct answers: " + correctAnswers;
+        document.querySelector(".answerContainer").innerHTML = "";
+        document.querySelector(".result").textContent = "Correct answers: " + score;
         return;
       }
 
-      questionBox.textContent = questions[currentQuestionIndex];
-      let container = document.getElementById("answerContainer");
-      container.innerHTML = "";
-
-      answerInput = document.createElement("input");
-      answerInput.type = "text";
-      answerInput.readOnly = true;
-      container.appendChild(answerInput);
+      questionBox.textContent = questionsList[questionStep];
+      let answerBox = document.querySelector(".answerContainer");
+      answerBox.innerHTML = "";
+      answerField = document.createElement("input");
+      answerField.type = "text";
+      answerField.readOnly = true;
+      answerBox.appendChild(answerField);
     }
 
-    keys.forEach(key => {
-      key.addEventListener("click", () => {
-        if (!answerInput) return;
-        let symbol = key.textContent;
+    for (let k of keyButtons) {
+      k.addEventListener("click", function() {
+        if (!answerField) return;
+        let keyChar = k.textContent;
 
-        if (symbol === "Backspace") {
-          answerInput.value = answerInput.value.slice(0, -1);
+        if (keyChar === "Backspace") {
+          answerField.value = answerField.value.slice(0, -1);
         } else {
-          answerInput.value += symbol;
+          answerField.value += keyChar;
         }
 
-        let expected = answers[currentQuestionIndex];
-        if (expected && answerInput.value.length >= expected.length) {
-          if (answerInput.value.toLowerCase() === expected.toLowerCase()) {
-            correctAnswers++;
+        let correctAnswer = answersList[questionStep];
+        if (correctAnswer && answerField.value.length >= correctAnswer.length) {
+          if (answerField.value.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+            score++;
           }
-          currentQuestionIndex++;
-          setTimeout(showQuestion, 500);
+          questionStep++;
+          setTimeout(loadQuestion, 500);
         }
       });
-    });
+    }
