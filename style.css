@@ -97,6 +97,22 @@ header img:hover {
   box-shadow: 0 6px 16px rgba(13, 71, 161, 0.45);
 }
 
+.Quest {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    #answerContainer input {
+      padding: 8px;
+      font-size: 16px;
+      width: 200px;
+      text-align: center;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
 
 
 
