@@ -54,7 +54,7 @@ main {
   transform: translateY(-2px);
 }
 
-.alphabet {
+.keyboard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -63,7 +63,7 @@ main {
   margin: 0 auto;
 }
 
-.alphabet p {
+.keyboard p {
   width: 28px;
   height: 28px;
   background-color: #e3f2fd;
@@ -76,7 +76,7 @@ main {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.alphabet p:hover {
+.keyboard p:hover {
   background-color: #cbe6fc;
   transform: scale(1.05);
 }
