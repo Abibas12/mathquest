@@ -1,71 +1,80 @@
-   let questionsList = [
-      "What is the capital of France?", "2 + 2 = ?", "What color is the sky during the day?",
-      "What is the third letter of the alphabet?", "How many legs does a spider have?",
-      "What city has the Statue of Liberty?", "How long is 10/2?", "What planet is closest to the Sun?",
-      "What animal says 'meow'?", "What day of the week is it today?", "What is created when you suddenly cool down lava?",
-      "In which country was gunpowder invented?", "Who is the richest man on Earth?",
-      "Who is the best golfer?", "Which Minecraft mob is the WORST?",
-      "Which Fortnite Marvel skin is the best?", "What is the capital of Japan?",
-      "Who directed the movie 'Titanic'?", "What color do you get when you mix red and blue?",
-      "Which planet is known as the Red Planet?", "What is 7 multiplied by 6?"
-    ];
+  let questionsList = [
+    "What is the capital of France?", "2 + 2 = ?", "What color is the sky during the day?",
+    "What is the third letter of the alphabet?", "How many legs does a spider have?",
+    "What city has the Statue of Liberty?", "How long is 10/2?", "What planet is closest to the Sun?",
+    "What animal says 'meow'?", "What day of the week is it today?", "What is created when you suddenly cool down lava?",
+    "In which country was gunpowder invented?", "Who is the richest man on Earth?",
+    "Who is the best golfer?", "Which Minecraft mob is the WORST?",
+    "Which Fortnite Marvel skin is the best?", "What is the capital of Japan?",
+    "Who directed the movie 'Titanic'?", "What color do you get when you mix red and blue?",
+    "Which planet is known as the Red Planet?", "What is 7 multiplied by 6?"
+  ];
 
-    let answersList = [
-      "Paris", "4", "blue", "C", "8", "New York", "5", "Mercury", "cat", "monday",
-      "obsidian", "China", "Elon", "Scheffler", "phantom", "Deadpool", "Tokyo", "James Cameron",
-      "Purple", "Mars", "42"
-    ];
+  let answersList = [
+    "Paris", "4", "blue", "C", "8", "New York", "5", "Mercury", "cat", "monday",
+    "obsidian", "China", "Elon", "Scheffler", "phantom", "Deadpool", "Tokyo", "James Cameron",
+    "Purple", "Mars", "42"
+  ];
 
-    let questionStep = 0;
-    let score = 0;
-    let answerField;
+  let step = 0;
+  let score = 0;
+  let currentAnswer = "";
 
-    let keyboardBlock = document.querySelector(".keyboard");
-    let keyButtons = keyboardBlock.querySelectorAll("p");
+  let keyboardBox = document.querySelector(".keyboard");
+  let keyButtons = keyboardBox.querySelectorAll("p");
 
-    document.querySelector(".start").addEventListener("click", function() {
-      score = 0;
-      questionStep = 0;
-      document.querySelector(".result").textContent = "";
-      loadQuestion();
-    });
+  document.querySelector(".start").addEventListener("click", function () {
+    step = 0;
+    score = 0;
+    currentAnswer = "";
+    document.querySelector(".result").textContent = "";
+    showQuestionStep();
+  });
 
-    function loadQuestion() {
-      let questionBox = document.querySelector(".Quest");
-      if (questionStep >= questionsList.length || questionsList[questionStep] === "") {
-        questionBox.textContent = "Quiz completed!";
-        document.querySelector(".answerContainer").innerHTML = "";
-        document.querySelector(".result").textContent = "Correct answers: " + score;
-        return;
-      }
+  function showQuestionStep() {
+    let questionBox = document.querySelector(".Quest");
+    let inputZone = document.querySelector(".answerContainer");
+    inputZone.innerHTML = "";
 
-      questionBox.textContent = questionsList[questionStep];
-      let answerBox = document.querySelector(".answerContainer");
-      answerBox.innerHTML = "";
-      answerField = document.createElement("input");
-      answerField.type = "text";
-      answerField.readOnly = true;
-      answerBox.appendChild(answerField);
+    if (step >= questionsList.length || questionsList[step] === "") {
+      questionBox.textContent = "Quiz completed!";
+      document.querySelector(".result").textContent = "Correct answers: " + score;
+      return;
     }
 
-    for (let k of keyButtons) {
-      k.addEventListener("click", function() {
-        if (!answerField) return;
-        let keyChar = k.textContent;
+    questionBox.textContent = questionsList[step];
+    let input = document.createElement("input");
+    input.type = "text";
+    input.readOnly = true;
+    inputZone.appendChild(input);
+    currentAnswer = "";
 
-        if (keyChar === "Backspace") {
-          answerField.value = answerField.value.slice(0, -1);
+    keyButtons.forEach(function (keyElement) {
+      keyElement.onclick = function () {
+        if (!input) return;
+
+        let char = keyElement.textContent;
+
+        if (char === "Backspace") {
+          currentAnswer = currentAnswer.slice(0, -1);
         } else {
-          answerField.value += keyChar;
+          currentAnswer += char;
         }
 
-        let correctAnswer = answersList[questionStep];
-        if (correctAnswer && answerField.value.length >= correctAnswer.length) {
-          if (answerField.value.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
-            score++;
-          }
-          questionStep++;
-          setTimeout(loadQuestion, 500);
+        input.value = currentAnswer;
+
+        let expectedAnswer = answersList[step];
+        if (
+          currentAnswer.length >= expectedAnswer.length &&
+          currentAnswer.trim().toLowerCase() === expectedAnswer.trim().toLowerCase()
+        ) {
+          score += 1;
+          step += 1;
+          setTimeout(showQuestionStep, 400);
+        } else if (currentAnswer.length >= expectedAnswer.length) {
+          step += 1;
+          setTimeout(showQuestionStep, 400);
         }
-      });
-    }
+      };
+    });
+  }
