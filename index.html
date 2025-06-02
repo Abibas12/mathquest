@@ -1,7 +1,5 @@
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Quest "justQuest where i can do whatever i want because i made it and i own it so dont argue with me and just answer the questions i will ask you in this very good quest"</title>
+  <title>justQuest</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,52 +7,62 @@
 </head>
 <body>
   <header>
-    <img src="https://i.ibb.co/bjRHnjS7/Preview.jpg">
+    <script src="script.js"></script>
+    <img src="https://i.ibb.co/bjRHnjS7/Preview.jpg" alt="justQuest Logo">
     <h1>justQuest</h1>
     <h2>Creators: Ivan and Maxx</h2>
   </header>
   <main>
-    <div class="start">START</div>
-    <div class="Quest"></div>
-    <div id="answerContainer"></div>
-    <div class="keyboard">
-      <p class="a">a</p>
-      <p class="b">b</p>
-      <p class="c">c</p>
-      <p class="d">d</p>
-      <p class="e">e</p>
-      <p class="f">f</p>
-      <p class="g">g</p>
-      <p class="h">h</p>
-      <p class="i">i</p>
-      <p class="j">j</p>
-      <p class="k">k</p>
-      <p class="l">l</p>
-      <p class="m">m</p>
-      <p class="n">n</p>
-      <p class="o">o</p>
-      <p class="p">p</p>
-      <p class="q">q</p>
-      <p class="r">r</p>
-      <p class="s">s</p>
-      <p class="t">t</p>
-      <p class="u">u</p>
-      <p class="v">v</p>
-      <p class="w">w</p>
-      <p class="x">x</p>
-      <p class="y">y</p>
-      <p class="z">z</p>
-      <p class="1">1</p>
-      <p class="2">2</p>
-      <p class="3">3</p>
-      <p class="4">4</p>
-      <p class="5">5</p>
-      <p class="6">6</p>
-      <p class="7">7</p>
-      <p class="8">8</p>
-      <p class="9">9</p>
-      <p class="0">0</p>
-    </div>
-    <div class="result"></div>
+    <section class="start-screen">
+      <button id="startButton">START</button>
+    </section>
+
+    <section class="quest-area">
+      <div id="questText"></div> <div id="answerContainer"></div> <div class="keyboard">
+        <button class="key" data-key="q">q</button>
+        <button class="key" data-key="w">w</button>
+        <button class="key" data-key="e">e</button>
+        <button class="key" data-key="r">r</button>
+        <button class="key" data-key="t">t</button>
+        <button class="key" data-key="y">y</button>
+        <button class="key" data-key="u">u</button>
+        <button class="key" data-key="i">i</button>
+        <button class="key" data-key="o">o</button>
+        <button class="key" data-key="p">p</button>
+
+        <button class="key" data-key="a">a</button>
+        <button class="key" data-key="s">s</button>
+        <button class="key" data-key="d">d</button>
+        <button class="key" data-key="f">f</button>
+        <button class="key" data-key="g">g</button>
+        <button class="key" data-key="h">h</button>
+        <button class="key" data-key="j">j</button>
+        <button class="key" data-key="k">k</button>
+        <button class="key" data-key="l">l</button>
+
+        <button class="key" data-key="z">z</button>
+        <button class="key" data-key="x">x</button>
+        <button class="key" data-key="c">c</button>
+        <button class="key" data-key="v">v</button>
+        <button class="key" data-key="b">b</button>
+        <button class="key" data-key="n">n</button>
+        <button class="key" data-key="m">m</button>
+
+        <button class="key" data-key="1">1</button>
+        <button class="key" data-key="2">2</button>
+        <button class="key" data-key="3">3</button>
+        <button class="key" data-key="4">4</button>
+        <button class="key" data-key="5">5</button>
+        <button class="key" data-key="6">6</button>
+        <button class="key" data-key="7">7</button>
+        <button class="key" data-key="8">8</button>
+        <button class="key" data-key="9">9</button>
+        <button class="key" data-key="0">0</button>
+        
+        <button class="key backspace-key" data-key="Backspace">Backspace</button>
+      </div>
+      <div class="result"></div>
+    </section>
   </main>
 </body>
+</html>
