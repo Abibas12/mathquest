@@ -77,8 +77,22 @@ header h2 {
   border-color: red;
 }
 
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.key {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .result {
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
-}
