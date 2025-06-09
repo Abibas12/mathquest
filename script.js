@@ -17,7 +17,7 @@ function getQuestions() {
     ["Which Minecraft mob is the WORST?", "phantom"],
     ["Which Fortnite Marvel skin is the best?", "Deadpool"],
     ["What is the capital of Japan?", "Tokyo"],
-    ["Who directed the movie 'Titanic'?", "James Cameron"],
+    ["Who directed the movie 'Titanic'?", "Cameron"],
     ["What color do you get when you mix red and blue?", "purple"], 
     ["Which planet is known as the Red Planet?", "Mars"],
     ["What is 7 multiplied by 6?", "42"]
