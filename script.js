@@ -5,7 +5,7 @@ function getQuestions() {
     ["What color is the sky during the day?", "blue"],
     ["What is the third letter of the alphabet?", "c"], 
     ["How many legs does a spider have?", "8"],
-    ["What city has the Statue of Liberty?", "New York"],
+    ["What city has the Statue of Liberty?", "York"],
     ["How long is 10/2?", "5"],
     ["What planet is closest to the Sun?", "Mercury"],
     ["What animal says 'meow'?", "cat"],
