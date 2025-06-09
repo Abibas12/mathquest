@@ -1,291 +1,99 @@
-Цей CSS виглядає досить добре і добре стилізує елементи, які ви мали в початковому HTML!
-
-Покращення та виправлення CSS
-З огляду на оновлений HTML та JavaScript, які ми обговорили, ось кілька ключових змін і доповнень, які зроблять ваш CSS більш ефективним і узгодженим з новою структурою:
-
-Зміна селекторів для "START" кнопки та клавіатури:
-start тепер id="startButton" і це <button>, а не div.
-Клавіатура тепер складається з <button> елементів, а не <p>.
-Селектор для тексту питання:
-Quest тепер id="questText".
-Стилі для контейнерів start-screen та quest-area:
-Ці класи використовуватимуться для перемикання видимості секцій.
-Стилі для поля введення відповіді:
-Ми додали клас answer-input до динамічно створеного поля введення, а також стилі для станів correct і incorrect.
-Ось виправлений та розширений CSS:
-
-CSS
-
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f9fd;
-    color: #1a1a1a;
-    /* Використовуйте шрифти, які ви завантажили в HTML */
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f9fd;
+  font-family: 'Montserrat', sans-serif;
+  color: #1a1a1a;
+  text-align: center;
 }
 
 header {
-    background-color: #d6ecfa;
-    padding: 24px 16px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Додано тінь для об'ємності */
+  background-color: #d6ecfa;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 header img {
-    max-width: 80px; /* Adjust as needed */
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 50%; /* If you want a circular logo */
+  width: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 28px; /* Збільшено розмір шрифту */
-    font-weight: 700; /* Зроблено більш жирним */
-    color: #1f75cb;
-    font-family: 'Tagesschrift', sans-serif; /* Якщо ви хочете використовувати спеціальний шрифт */
+  margin: 0;
+  font-size: 28px;
+  color: #1f75cb;
 }
 
 header h2 {
-    margin-top: 6px;
-    font-size: 15px; /* Збільшено розмір шрифту */
-    font-weight: normal;
-    color: #444;
+  margin-top: 6px;
+  font-size: 15px;
+  color: #444;
 }
 
-main {
-    text-align: center;
-    padding: 30px 16px;
-    min-height: calc(100vh - 150px); /* Adjust height to fill viewport, minus header height */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#startButton {
+  margin-top: 30px;
+  padding: 12px 30px;
+  font-size: 18px;
+  background-color: #4fb4ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-/* --- Start Screen Styles --- */
-.start-screen {
-    display: flex; /* Display as flex to center content */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-#startButton { /* Changed from .start to #startButton */
-    display: inline-block;
-    background-color: #4fb4ff;
-    color: white;
-    padding: 12px 28px; /* Збільшено відступи */
-    font-size: 18px; /* Збільшено розмір шрифту */
-    font-weight: 600;
-    border-radius: 8px; /* Більш округлі кути */
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Додано тінь */
-}
-
-#startButton:hover {
-    background-color: #3399e6;
-    transform: translateY(-3px); /* Більший ефект підняття */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-}
-
-#startButton:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* --- Quest Area Styles --- */
 .quest-area {
-    display: flex; /* Use flexbox for vertical centering */
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Align content to top initially */
-    width: 100%;
-    max-width: 600px; /* Обмежте ширину контенту квесту */
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-
-#questText { /* Changed from .Quest to #questText */
-    font-size: 24px; /* Збільшено розмір шрифту */
-    margin-bottom: 25px; /* Збільшено відступ */
-    font-weight: bold;
-    color: #333;
-    min-height: 50px; /* Ensure space for question text */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+#questText {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-#answerContainer {
-    margin-bottom: 30px;
-}
-
-.answer-input { /* Added class for styling the dynamically created input */
-    padding: 12px 15px; /* Збільшено відступи */
-    font-size: 20px; /* Збільшено розмір шрифту */
-    width: 250px; /* Збільшено ширину */
-    max-width: 80%; /* Ensure responsiveness */
-    text-align: center;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    outline: none; /* Remove default outline */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+.answer-input {
+  font-size: 20px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+  text-align: center;
 }
 
 .answer-input.correct {
-    border-color: #28a745; /* Green for correct */
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px rgba(40, 167, 69, 0.4);
+  border-color: green;
 }
 
 .answer-input.incorrect {
-    border-color: #dc3545; /* Red for incorrect */
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px rgba(220, 53, 69, 0.4);
+  border-color: red;
 }
 
-/* --- Keyboard Styles --- */
 .keyboard {
-    display: grid; /* Use grid for better control over layout */
-    grid-template-columns: repeat(10, 1fr); /* 10 columns for QWERTY row */
-    gap: 8px; /* Збільшено проміжок */
-    max-width: 600px; /* Збільшено максимальну ширину клавіатури */
-    margin: 0 auto 30px auto; /* Додано відступ знизу */
-    padding: 10px;
-    background-color: #f0f8ff; /* Light background for keyboard area */
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-top: 20px;
 }
 
-.keyboard button.key { /* Changed from .keyboard p to .keyboard button.key */
-    width: auto; /* Allow grid to manage width */
-    height: 45px; /* Збільшено висоту кнопок */
-    background-color: #e3f2fd;
-    font-size: 16px; /* Збільшено розмір шрифту */
-    font-weight: 500;
-    color: #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px; /* Більш округлі кути */
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    border: 1px solid #cce0f5; /* Додано тонку межу */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
-
-.keyboard button.key:hover {
-    background-color: #cbe6fc;
-    transform: translateY(-2px); /* Ефект підняття */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.keyboard button.key:active {
-    background-color: #add8f7;
-    transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-/* Specific layout for keyboard rows (optional, but good for consistent look) */
-/* You might need to adjust grid-template-columns for each row if they have different numbers of keys */
-.keyboard button.key[data-key="q"] { grid-column: 1 / span 1; }
-.keyboard button.key[data-key="a"] { grid-column: 2 / span 1; } /* Shift 'a' to the right */
-.keyboard button.key[data-key="z"] { grid-column: 3 / span 1; } /* Shift 'z' to the right */
-
-.keyboard button.backspace-key {
-    grid-column: span 2; /* Зробіть Backspace ширшою */
-    background-color: #ff6347; /* Червоний колір для Backspace */
-    color: white;
-    font-weight: bold;
-}
-
-.keyboard button.backspace-key:hover {
-    background-color: #e04e30;
+.key {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .result {
-    margin-top: 20px;
-    font-size: 22px; /* Збільшено розмір шрифту */
-    font-weight: bold;
-    color: #28a745; /* Green for success message */
-    min-height: 30px; /* Ensure space for result text */
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 24px;
-    }
-    header h2 {
-        font-size: 14px;
-    }
-    #startButton {
-        padding: 10px 24px;
-        font-size: 16px;
-    }
-    #questText {
-        font-size: 20px;
-    }
-    .answer-input {
-        width: 180px;
-        font-size: 18px;
-    }
-    .keyboard {
-        gap: 5px;
-        max-width: 90%; /* Allow keyboard to take more width on smaller screens */
-    }
-    .keyboard button.key {
-        height: 40px;
-        font-size: 14px;
-    }
-    .result {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 20px;
-    }
-    header h2 {
-        font-size: 12px;
-    }
-    #startButton {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-    #questText {
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-    .answer-input {
-        width: 150px;
-        font-size: 16px;
-        padding: 10px 12px;
-    }
-    .keyboard {
-        gap: 4px;
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); /* More flexible grid for very small screens */
-    }
-    .keyboard button.key {
-        height: 35px;
-        font-size: 13px;
-    }
-    .keyboard button.backspace-key {
-        font-size: 12px;
-        grid-column: span 3; /* Even wider for small screens if needed */
-    }
-    .result {
-        font-size: 16px;
-    }
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
