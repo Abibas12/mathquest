@@ -1,114 +1,104 @@
-let questions = [
-    ["What is the capital of France?", "paris"],
+function getQuestions() {
+  return [
+    ["What is the capital of France?", "Paris"],
     ["2 + 2 = ?", "4"],
     ["What color is the sky during the day?", "blue"],
-    ["What is the third letter of the alphabet?", "c"],
+    ["What is the third letter of the alphabet?", "c"], 
     ["How many legs does a spider have?", "8"],
-    ["What city has the Statue of Liberty?", "new york"],
+    ["What city has the Statue of Liberty?", "New York"],
     ["How long is 10/2?", "5"],
-    ["What planet is closest to the Sun?", "mercury"],
+    ["What planet is closest to the Sun?", "Mercury"],
     ["What animal says 'meow'?", "cat"],
-    ["What day of the week is it today?", "monday"],
+    ["What day of the week is it today?", "Monday"],
     ["What is created when you suddenly cool down lava?", "obsidian"],
-    ["In which country was gunpowder invented?", "china"],
-    ["Who is the richest man on Earth?", "elon"],
-    ["Who is the best golfer?", "scheffler"],
+    ["In which country was gunpowder invented?", "China"],
+    ["Who is the richest man on Earth?", "Elon"], 
+    ["Who is the best golfer?", "Scheffler"],
     ["Which Minecraft mob is the WORST?", "phantom"],
-    ["Which Fortnite Marvel skin is the best?", "deadpool"],
-    ["What is the capital of Japan?", "tokyo"],
-    ["Who directed the movie 'Titanic'?", "james cameron"],
-    ["What color do you get when you mix red and blue?", "purple"],
-    ["Which planet is known as the Red Planet?", "mars"],
+    ["Which Fortnite Marvel skin is the best?", "Deadpool"],
+    ["What is the capital of Japan?", "Tokyo"],
+    ["Who directed the movie 'Titanic'?", "James Cameron"],
+    ["What color do you get when you mix red and blue?", "purple"], 
+    ["Which planet is known as the Red Planet?", "Mars"],
     ["What is 7 multiplied by 6?", "42"]
-];
-
-let score = 0;
-let usedQuestionIndices = [];
-let currentQuestion = null;
-let typedAnswer = "";
-
-let startButton = document.getElementById("startButton");
-let startScreen = document.querySelector(".start-screen");
-let questArea = document.querySelector(".quest-area");
-let questText = document.getElementById("questText");
-let answerContainer = document.getElementById("answerContainer");
-let resultText = document.querySelector(".result");
-
-let answerInput;
-
-startButton.addEventListener("click", startGame);
-
-document.addEventListener("keydown", handleKeyDown);
-
-function startGame() {
-    score = 0;
-    usedQuestionIndices = [];
-    startScreen.style.display = "none";
-    questArea.style.display = "flex";
-    nextQuestion();
+  ];
 }
+
+let quizQuestions = getQuestions();
+let used = [];
+let score = 0;
+let typed = "";
+let currentQ = null;
+
+const startBtn = document.getElementById("startButton");
+const questText = document.getElementById("questText");
+const answerContainer = document.getElementById("answerContainer");
+const result = document.querySelector(".result");
+const keys = document.querySelectorAll(".keyboard .key");
+const startScreen = document.querySelector(".start-screen");
+const questArea = document.querySelector(".quest-area");
+
+startBtn.onclick = function () {
+  startScreen.style.display = "none";
+  questArea.style.display = "block";
+  score = 0;
+  used = [];
+  nextQuestion();
+};
 
 function nextQuestion() {
-    answerContainer.innerHTML = "";
-    resultText.innerHTML = "";
-    typedAnswer = "";
+  answerContainer.innerHTML = "";
+  result.textContent = "";
+  typed = "";
 
-    if (usedQuestionIndices.length === questions.length) {
-        questText.innerText = "Quiz Done!";
-        resultText.innerText = `Score: ${score} / ${questions.length}`;
-        startButton.innerText = "Play Again";
-        startScreen.style.display = "block";
-        questArea.style.display = "none";
-        return;
-    }
+  if (used.length === quizQuestions.length) {
+    questText.textContent = "Quiz completed!";
+    result.textContent = "Correct answers: " + score + " of " + quizQuestions.length;
+    startBtn.textContent = "Play Again";
+    startScreen.style.display = "block";
+    questArea.style.display = "none";
+    return;
+  }
 
-    let randomIndex;
-    do {
-        randomIndex = Math.floor(Math.random() * questions.length);
-    } while (usedQuestionIndices.includes(randomIndex));
+  let index;
+  do {
+    index = Math.floor(Math.random() * quizQuestions.length);
+  } while (used.includes(index));
+  used.push(index);
 
-    usedQuestionIndices.push(randomIndex);
-    currentQuestion = questions[randomIndex];
+  currentQ = quizQuestions[index];
+  questText.textContent = currentQ[0];
 
-    questText.innerText = currentQuestion[0];
-
-    answerInput = document.createElement("input");
-    answerInput.type = "text";
-    answerInput.id = "answerInput";
-    answerInput.classList.add("answer-input");
-    answerInput.readOnly = true;
-    answerInput.value = typedAnswer;
-    answerContainer.appendChild(answerInput);
+  const input = document.createElement("input");
+  input.type = "text";
+  input.readOnly = true;
+  input.className = "answer-input";
+  answerContainer.appendChild(input);
 }
 
-function handleKeyDown(event) {
-    if (questArea.style.display === "flex" && currentQuestion) {
-        const key = event.key;
-        const correct = currentQuestion[1];
+keys.forEach(button => {
+  button.onclick = () => {
+    const key = button.dataset.key;
+    const input = document.querySelector(".answer-input");
+    if (!input) return;
 
-        if (key === "Backspace") {
-            typedAnswer = typedAnswer.slice(0, -1);
-        } else if (key.length === 1 && /[a-zA-Z0-9 ]/.test(key)) {
-            typedAnswer += key;
-        }
-
-        answerInput.value = typedAnswer;
-
-        if (typedAnswer.length === correct.length) {
-            if (typedAnswer.toLowerCase() === correct.toLowerCase()) {
-                answerInput.classList.remove("incorrect");
-                answerInput.classList.add("correct");
-                resultText.innerText = "Correct!";
-                score += 1;
-            } else {
-                answerInput.classList.remove("correct");
-                answerInput.classList.add("incorrect");
-                resultText.innerText = "Incorrect.";
-            }
-            setTimeout(nextQuestion, 1000);
-        } else {
-            answerInput.classList.remove("correct", "incorrect");
-            resultText.innerText = "";
-        }
+    if (key === "Backspace") {
+      typed = typed.slice(0, -1);
+    } else {
+      typed += key;
     }
-}
+
+    input.value = typed;
+    const correct = currentQ[1];
+
+    if (typed.length === correct.length) {
+      if (typed.toLowerCase() === correct.toLowerCase()) {
+        input.classList.add("correct");
+        score++;
+      } else {
+        input.classList.add("incorrect");
+      }
+      setTimeout(nextQuestion, 1000);
+    }
+  };
+});
