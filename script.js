@@ -1,3 +1,4 @@
+let logo = document.querySelector(".logo")
 function getQuestions() {
   return [
     ["What is the capital of France?", "Paris"],
