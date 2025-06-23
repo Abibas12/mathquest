@@ -103,35 +103,3 @@ keys.forEach(button => {
     }
   };
 });
- // function to set a given theme/color-scheme
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.documentElement.className = themeName;
-        }
-
-        // function to toggle between light and dark theme
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-light');
-            } else {
-                setTheme('theme-dark');
-            }
-        }
-
-        // Immediately invoked function to set the theme on initial load
-        (function () {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-dark');
-                document.getElementById('slider').checked = false;
-            } else {
-                setTheme('theme-light');
-              document.getElementById('slider').checked = true;
-            }
-        })();
-logo.addEventListener('mousemove', function(e) {
-    let dx = e.pageX - window.innerWidth / 2
-    let dy = e.pageY - window.innerHeight / 2
-    let angleX = 20 * dx / window.innerWidth / 2
-    let angleY = 20 * dy / window.innerHeight / 2
-    block.style.transform = `rotateX(${angleY}deg) rotateY(${angleX}deg)`
-})
