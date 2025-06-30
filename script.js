@@ -103,3 +103,9 @@ keys.forEach(button => {
     }
   };
 });
+body {
+	background-color: var(--color-default);
+}
+:root {
+  --color-default: #fff;
+}
