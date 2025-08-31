@@ -1,3 +1,4 @@
+let logo = document.querySelector(".logo")
 function getQuestions() {
   return [
     ["What is the capital of France?", "Paris"],
@@ -102,3 +103,9 @@ keys.forEach(button => {
     }
   };
 });
+body {
+	background-color: var(--color-default);
+}
+:root {
+  --color-default: #fff;
+}

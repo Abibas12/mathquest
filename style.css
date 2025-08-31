@@ -98,3 +98,11 @@ flex-wrap: wrap;
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
+}
+  
+
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
